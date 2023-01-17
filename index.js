@@ -32,14 +32,13 @@ app.post('/sendEmail', (req, res) => {
          
         mailTransporter.sendMail(mailDetails, function(err, data) {
             if(err) {
-                console.log(err)
-                console.log('Error Occurs');
+                res.status(404).json('Error Occurs');
             } else {
-                console.log('Email sent successfully');
+                res.status(200).json('Email sent successfully');
             }
         });
     } catch (error) {
-        console.log(error)
+        res.status(500).json("Something went wrong")
     }
 })
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port)
